@@ -1,0 +1,273 @@
+#  ____    ___      _
+# / __ \  / _ )____(_)_ __
+#/ /_/ / / _  / __/ /\ \ /
+#\___\_\/____/_/ /_//_\_\
+#
+project:
+  #------------------------------------#
+  # QBRIX CONFIG                       #
+  #------------------------------------#
+  #QBRIX NAME, API VERSION AND REPO DETAILS GO HERE
+
+  name: NxDO-PACKAGE-REPO-TEMPLATE
+  package:
+    name: NxDO-PACKAGE-REPO-TEMPLATE
+    api_version: "54.0"
+  git:
+    default_branch: "main"
+    repo_url: https://github.com/SFDO-SE/NxDO-PACKAGE-REPO-TEMPLATE
+  source_format: sfdx
+
+  #------------------------------------#
+  # QBRIX PACKAGE DEPEDENDENCIES       #
+  #------------------------------------#
+  #ADD MANAGED & UNMANAGED PACKAGE DEPEDENDENCIES HERE. OTHER CCI PROJECTS CAN ALSO BE LINKED PROVIDING THEY WORK WITH JUST A DEPLOY METHOD.
+
+  #dependencies:
+  #--Examples:
+  #   - github: GitHubRepoURLHere (Note: This MUST be a CumulusCI Project and doesn't support custom installs, use sources if thats needed)
+  #   - version_id: UnmanagedPackageIDHere
+  #   - namespace: ManagedPackageNamespaceHere (Note: Lightning Components need to use the package ID and are treated as an unmanaged package)
+  #     version: ManagedPackageVersionNumberHere
+  #--Add Project Level Dependencies Below
+
+#--Add Project Sources here--
+sources:
+  #------------------------------------#
+  # QBRIX SOURCES                      #
+  #------------------------------------#
+  #ADD SOURCES HERE WHICH MUST BE CCI PROJECTS STORED IN GITHUB.
+
+  base:
+    github: https://github.com/SFDO-SE/NxDO-1-ALL-QBRANCH
+    release: latest
+  data:
+    github: https://github.com/SFDO-SE/NxDO-4-ALL-SNOWFAKERY
+    release: latest
+
+tasks:
+  #------------------------------------#
+  # CCI TASK DEFAULTS                  #
+  #------------------------------------#
+  #ADD DEFAULT CONFIGURATION FOR CCI TASK HERE
+
+  robot:
+    options:
+      suites: robot/NxDO-PACKAGE-REPO-TEMPLATE/tests
+      options:
+        outputdir: robot/NxDO-PACKAGE-REPO-TEMPLATE/results
+
+  robot_testdoc:
+    options:
+      path: robot/NxDO-PACKAGE-REPO-TEMPLATE/tests
+      output: robot/NxDO-PACKAGE-REPO-TEMPLATE/doc/NxDO-PACKAGE-REPO-TEMPLATE_tests.html
+
+  run_tests:
+    options:
+      required_org_code_coverage_percent: 75
+
+  load_dataset:
+    options:
+      ignore_row_errors: True
+      drop_missing_schema: True
+      set_recently_viewed: False
+
+  generate_dataset_mapping:
+    options:
+      ignore:
+        - LiveChatTranscript
+        - FlowTableViewDefinition__c
+        - Installed_mIDO__c
+        - Jobs__x
+        - Scores__x
+        - Asset
+        - npsp__DataImport__c
+
+  deploy:
+    options:
+      path: force-app
+
+  org_settings:
+    options:
+      definition_file: orgs/dev.json
+
+  update_vscode_tasks:
+    description: Update .vscode tasks.json file from NxDO template 
+    class_path: cumulusci.tasks.command.Command
+    options:
+      command: chmod +x scripts/NxDO/*.sh && scripts/NxDO/UpdateVSCodeTasks.sh
+
+
+  #------------------------------------#
+  # CHANGE CAPTURE                     #
+  #------------------------------------#
+  #ADD OBJECT EXCLUSIONS HERE WHICH YOU DON'T WANT TO PULL TO SOURCE BY DEFAULT
+
+  list_changes:
+    options:
+      exclude:
+        - FeatureParameter
+        - "AuraDefinition:"
+        - "SiteDotCom:"
+        - "ManagedTopics:"
+        - "LiveChatTranscript:"
+        - "ExperienceResource:"
+        - "AppMenu:"
+        - "Profile:"
+        - "FlowDefinition:"
+        #Include to exclude Analytics Dashboards and Applications
+        #- 'WaveApplication:'
+        #- 'WaveDashboard:'
+        #- 'WaveDataset:'
+        #- 'WaveXmd:'
+        #- 'WaveDataflow:'
+
+  retrieve_changes:
+    options:
+      exclude:
+        - FeatureParameter
+        - "AuraDefinition:"
+        - "SiteDotCom:"
+        - "ManagedTopics:"
+        - "LiveChatTranscript:"
+        - "ExperienceResource:"
+        - "AppMenu:"
+        - "Profile:"
+        - "FlowDefinition:"
+        #Include to exclude Analytics Dashboards and Applications
+        #- 'WaveApplication:'
+        #- 'WaveDashboard:'
+        #- 'WaveDataset:'
+        #- 'WaveXmd:'
+        #- 'WaveDataflow:'
+
+flows:
+  #------------------------------------#
+  # CCI FLOW DEFAULTS                  #
+  #------------------------------------#
+
+  deploy_unmanaged_ee:
+    steps:
+      6:
+        task: None
+
+  deploy_unmanaged:
+    steps:
+      4:
+        task: None
+
+  #------------------------------------#
+  # PRE-QBRIX DEPLOY                   #
+  #------------------------------------#
+  #APPEND ADDITIONAL SOURCE DEPENDENCY DEPLOYMENTS ONTO THE DEFAULT CCI DEPENDENCY FLOW
+
+  source_dependencies:
+    steps:
+      1:
+        task: None
+
+  dependencies:
+    steps:
+      3:
+        flow: base:deploy_qbrix
+      4:
+        flow: source_dependencies
+
+  #------------------------------------#
+  # QBRIX DEPLOY                       #
+  #------------------------------------#
+  #DEFAULT INSTALL FLOWS ARE DEFINED HERE. "deploy_qbrix" and "deploy_qbrix_min" SHOULD ALWAYS BE DEFINED
+
+  #DEFAULT INSTALL FOR QBRIX WHICH DEPLOYS EVERYTHING INCLUDING BASE QBRANCH QBRIX
+  deploy_qbrix:
+    steps:
+      1:
+        task: org_settings
+        when: not org_config.scratch
+      2:
+        flow: dependencies
+      3:
+        task: deploy
+      4:
+        flow: post_qbrix_deploy
+
+  #DEFAULT INSTALL FOR QBRIX WHICH DEPLOYS EVERYTHING EXCEPT BASE QBRANCH QBRIX
+  deploy_qbrix_min:
+    steps:
+      1:
+        task: update_dependencies
+      2:
+        flow: source_dependencies
+      3:
+        task: deploy
+      4:
+        flow: post_qbrix_deploy
+
+  #RUN THIS FLOW FOR DEPLOYMENT TO A TSO PRODUCTION ORG
+  deploy_qbrix_tso:
+    steps:
+      1:
+        flow: deploy_qbrix
+
+  #------------------------------------#
+  # POST-QBRIX DEPLOY                  #
+  #------------------------------------#
+  #ADD POST DEPLOYMENT STEPS HERE
+
+  post_qbrix_deploy:
+    steps:
+      1:
+        task: None
+
+  #APPEND ADDITIONAL STEPS TO CCI DEV AND QA FLOWS
+  config_dev:
+    steps:
+      3:
+        flow: post_qbrix_deploy
+
+  config_qa:
+    steps:
+      3:
+        flow: post_qbrix_deploy
+
+  #------------------------------------#
+  # QBRIX DATA                         #
+  #------------------------------------#
+  #DEFINE DATA GENERATION FLOWS HERE
+
+  generate_qbrix_data:
+    steps:
+      1:
+        task: None
+        #flow: data:FLOWNAMEHERE
+
+orgs:
+  #------------------------------------#
+  # SCRATCH ORG CONFIG                 #
+  #------------------------------------#
+  #DEFAULT SETTINGS FOR SCRATCH ORGS. PREVIEW ONLY WORKS IN CORE PREVIEW RELEASE WINDOWS
+
+  scratch:
+    dev:
+      config_file: orgs/dev.json
+      days: 30
+      namespaced: false
+    dev_preview:
+      config_file: orgs/dev_preview.json
+      days: 30
+      namespaced: false
+
+plans:
+  #------------------------------------#
+  # METADEPLOY CONFIG                  #
+  #------------------------------------#
+  #DEFINE DEPLOYMENY PLANS HERE FOR USE WITH METADEPLOY
+
+  install_pack:
+    slug: deployqbrix
+    title: Install/Update Qbrix
+    tier: primary
+    is_listed: True
+    steps:
+      1:
+        flow: deploy_qbrix_tso

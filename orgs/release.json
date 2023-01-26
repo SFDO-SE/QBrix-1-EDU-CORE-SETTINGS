@@ -1,0 +1,105 @@
+{
+  "orgName": "NxDO-PACKAGE-REPO-TEMPLATE - Dev Org",
+  "edition": "Enterprise",
+  "features": ["InsightsPlatform", 
+    "AddInsightsQueryLimit:30", 
+    "MultiCurrency", 
+    "API", 
+    "PlatformConnect:5", 
+    "FeatureParameterLicensing", 
+    "AddCustomApps:30", 
+    "AddCustomObjects:30", 
+    "AddCustomRelationships:10", 
+    "AddCustomTabs:30",
+    "AnalyticsAdminPerms",
+    "AnalyticsAppEmbedded",
+    "DevelopmentWave",
+    "Knowledge",
+    "CaseClassification",
+    "Chatbot",
+    "CMSUnlimitedUse",
+    "Communities",
+    "DefaultWorkflowUser",
+    "LiveAgent",
+    "LiveMessage",
+    "Macros",
+    "FlowSites",
+    "IndustriesActionPlan",
+    "Interaction",
+    "SalesUser",
+    "ServiceCloud",
+    "SharedActivities",
+    "StateAndCountryPicklist",
+    "Workflow",
+    "WorkflowFlowActionFeature",
+    "WorkThanksPref",
+    "LightningSalesConsole",
+    "LightningServiceConsole",
+    "SOCIALCUSTOMERSERVICE",
+    "DocumentChecklist",
+    "EinsteinAnalyticsPlus",
+    "Entitlements",
+    "MarketingUser",
+    "ProcessBuilder",
+    "SalesforceContentUser",
+    "SalesforceIdentityForCommunities",
+    "SalesCloudEinstein",
+    "CustomerCommunityPlusLogin",
+    "CustomerCommunityPlus",
+    "PartnerCommunity",
+    "CustomerCommunity",
+    "CustomerCommunityLogin"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "chatterSettings": {
+      "enableChatter": true
+    },
+    "userManagementSettings": {
+      "enableNewProfileUI": true
+    },
+    "securitySettings": {
+      "enableAdminLoginAsAnyUser": true,
+      "sessionSettings": {
+        "forceRelogin": false
+      }
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    },
+    "enhancedNotesSettings": {
+      "enableEnhancedNotes": true
+    },
+    "pathAssistantSettings": {
+      "pathAssistantEnabled": true
+    },
+    "liveAgentSettings": {
+      "enableChatFindOrCreateEnable": true,
+      "enableLiveAgent": true,
+      "enableQuickTextEnabled": true
+    },
+    "omniChannelSettings": {
+      "enableOmniChannel": true
+    },
+    "communitiesSettings": {
+      "enableNetworksEnabled": true,
+      "enableGuestRecordReassignOrgPref": true,
+      "enableOotbProfExtUserOpsEnable": true
+    },
+    "experienceBundleSettings": {
+        "enableExperienceBundleMetadata": true
+    },
+    "surveySettings": {
+      "enableSurvey": true,
+      "enableSurveyOwnerCanManageResponse": true
+    },
+    "socialProfileSettings": {
+      "enableSocialProfiles": true,
+      "isFacebookSocialProfilesDisabled": false,
+      "isLinkedInSocialProfilesDisabled": false,
+      "isTwitterSocialProfilesDisabled": false,
+      "isYouTubeSocialProfilesDisabled": false
+    }
+  }
+}
