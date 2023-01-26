@@ -1,34 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <IndustriesSettings xmlns="http://soap.sforce.com/2006/04/metadata">
-    <appointmentDistributionOrgPref>false</appointmentDistributionOrgPref>
-    <enableAccountScoreEnabled>false</enableAccountScoreEnabled>
-    <enableBlockResourceAvailabilityOrgPref>true</enableBlockResourceAvailabilityOrgPref>
-    <enableCallReportAdminContextPref>false</enableCallReportAdminContextPref>
-    <enableClinicalDataModel>true</enableClinicalDataModel>
-    <enableEinsteinVisits>false</enableEinsteinVisits>
-    <enableEventManagementOrgPref>true</enableEventManagementOrgPref>
-    <enableEventWriteOrgPref>false</enableEventWriteOrgPref>
-    <enableExistingHealthCloudOrg>false</enableExistingHealthCloudOrg>
-    <enableIndustriesAssessment>false</enableIndustriesAssessment>
-    <enableIndustriesRebates>false</enableIndustriesRebates>
-    <enableInteractionRoleHierarchy>true</enableInteractionRoleHierarchy>
-    <enableInteractionSummaryPref>true</enableInteractionSummaryPref>
-    <enableInteractionSummaryRoleHierarchy>true</enableInteractionSummaryRoleHierarchy>
-    <enableMedRecSetting>false</enableMedRecSetting>
-    <enableMedicalDeviceEnabled>false</enableMedicalDeviceEnabled>
-    <enableMedicationManagementEnabled>false</enableMedicationManagementEnabled>
-    <enableMultiResourceOrgPref>false</enableMultiResourceOrgPref>
-    <enableMultipleCareProgramEnrolleeOrgPref>false</enableMultipleCareProgramEnrolleeOrgPref>
-    <enableObjectDetection>false</enableObjectDetection>
-    <enableOverbookingOrgPref>false</enableOverbookingOrgPref>
-    <enablePatientAppointmentSchedulingOrgPref>false</enablePatientAppointmentSchedulingOrgPref>
-    <enableProviderSearchSyncOrgPref>false</enableProviderSearchSyncOrgPref>
-    <enableSmartTags>false</enableSmartTags>
-    <enableSustainabilityCloud>false</enableSustainabilityCloud>
-    <enableTimelinePref>true</enableTimelinePref>
-    <enableTopicOrTemplate>false</enableTopicOrTemplate>
-    <enableTopicTimeSlot>true</enableTopicTimeSlot>
-    <enableVideoVisitsOrgPref>true</enableVideoVisitsOrgPref>
-    <enableVisitCalendarSync>false</enableVisitCalendarSync>
-    <enableVisitInventoryEnabled>false</enableVisitInventoryEnabled>
+    <enableEducationCloud>true</enableEducationCloud>
 </IndustriesSettings>
