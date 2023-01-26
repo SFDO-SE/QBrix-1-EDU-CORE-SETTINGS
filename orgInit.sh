@@ -1,2 +1,2 @@
 
-sfdx force:source:deploy
+sfdx force:source:deploy -p force-app
