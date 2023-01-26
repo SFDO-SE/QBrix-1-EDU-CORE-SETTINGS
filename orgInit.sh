@@ -1,2 +1,2 @@
 
-sfdx force:source:deploy -p force-app\main\default\sharingRules
+sfdx force:source:deploy -m SharingRules
