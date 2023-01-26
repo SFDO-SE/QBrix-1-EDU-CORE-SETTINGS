@@ -1,2 +1,2 @@
 
-sfdx force:source:deploy -m SharingRules
+sfdx force:source:deploy -x "files\package.xml"
