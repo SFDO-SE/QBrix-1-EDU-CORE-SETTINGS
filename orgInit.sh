@@ -1,2 +1,2 @@
 
-sfdx force:source:deploy -m CustomObject
+sfdx force:source:deploy -m SharingRules
