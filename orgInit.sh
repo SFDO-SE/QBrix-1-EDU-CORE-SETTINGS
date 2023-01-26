@@ -1,2 +1,3 @@
 
-sfdx force:source:deploy
+sfdx force:source:deploy -m Settings
+sfdx force:source:deploy -m CustomObject
